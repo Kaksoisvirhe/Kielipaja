@@ -16,4 +16,4 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // Jos parametria ei anneta, käytetään oletushuonetta "tyopaja-default".
 // Jokainen eri huoneen nimi on oma erillinen kysymys + keskustelu.
 const params = new URLSearchParams(window.location.search);
-export const ROOM = params.get("huone") || "tyopaja-default";
+export const ROOM = params.get("huone") || null;
