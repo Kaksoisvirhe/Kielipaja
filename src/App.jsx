@@ -138,14 +138,29 @@ export default function App() {
     await savePoll(next);
   };
 
+  const MAX_VOTES = 5;
+  const [limitWarning, setLimitWarning] = useState(false);
+
+  const myVoteCount = Object.values(poll.votes || {}).filter((voters) =>
+    (voters || []).includes(name.trim())
+  ).length;
+
   const toggleVote = async (optionId) => {
     if (!nameSaved) return;
     const votes = { ...poll.votes };
-    for (const key of Object.keys(votes)) {
-      votes[key] = (votes[key] || []).filter((v) => v !== name.trim());
-    }
     const already = (poll.votes[optionId] || []).includes(name.trim());
-    if (!already) {
+
+    if (already) {
+      votes[optionId] = (votes[optionId] || []).filter(
+        (v) => v !== name.trim()
+      );
+      setLimitWarning(false);
+    } else {
+      if (myVoteCount >= MAX_VOTES) {
+        setLimitWarning(true);
+        setTimeout(() => setLimitWarning(false), 2500);
+        return;
+      }
       votes[optionId] = [...(votes[optionId] || []), name.trim()];
     }
     await savePoll({ ...poll, votes });
@@ -352,7 +367,25 @@ export default function App() {
             Lisää
           </button>
         </div>
-        {!nameSaved && <p style={styles.hint}>Anna nimesi yllä äänestääksesi.</p>}
+       {!nameSaved && <p style={styles.hint}>Anna nimesi yllä äänestääksesi.</p>}
+        {nameSaved && (
+          <p style={styles.hint}>
+            Valitse enintään {MAX_VOTES} vaihtoehtoa
+            {myVoteCount > 0 && ` — valittuna ${myVoteCount}/${MAX_VOTES}`}.
+          </p>
+        )}
+        {limitWarning && (
+          <p
+            style={{
+              ...styles.hint,
+              color: "#c0392b",
+              fontWeight: 600,
+            }}
+          >
+            Olet jo valinnut {MAX_VOTES} vaihtoehtoa. Poista ensin yksi
+            valinta lisätäksesi toisen.
+          </p>
+        )}
       </section>
 
       <section style={styles.section}>
