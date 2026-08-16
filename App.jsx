@@ -367,11 +367,23 @@ export default function App() {
             Lisää
           </button>
         </div>
-        {!nameSaved && <p style={styles.hint}>Anna nimesi yllä äänestääksesi.</p>}
+       {!nameSaved && <p style={styles.hint}>Anna nimesi yllä äänestääksesi.</p>}
         {nameSaved && (
           <p style={styles.hint}>
             Valitse enintään {MAX_VOTES} vaihtoehtoa
             {myVoteCount > 0 && ` — valittuna ${myVoteCount}/${MAX_VOTES}`}.
+          </p>
+        )}
+        {limitWarning && (
+          <p
+            style={{
+              ...styles.hint,
+              color: "#c0392b",
+              fontWeight: 600,
+            }}
+          >
+            Olet jo valinnut {MAX_VOTES} vaihtoehtoa. Poista ensin yksi
+            valinta lisätäksesi toisen.
           </p>
         )}
       </section>
