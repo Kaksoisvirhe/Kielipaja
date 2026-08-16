@@ -368,6 +368,12 @@ export default function App() {
           </button>
         </div>
         {!nameSaved && <p style={styles.hint}>Anna nimesi yllä äänestääksesi.</p>}
+        {nameSaved && (
+          <p style={styles.hint}>
+            Valitse enintään {MAX_VOTES} vaihtoehtoa
+            {myVoteCount > 0 && ` — valittuna ${myVoteCount}/${MAX_VOTES}`}.
+          </p>
+        )}
       </section>
 
       <section style={styles.section}>
