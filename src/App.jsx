@@ -225,7 +225,7 @@ export default function App() {
 
       <header style={styles.header}>
         <div style={styles.eyebrow}>YHTEINEN TILA</div>
-        <h1 style={styles.h1}>Työpajan tulokset</h1>
+        <h1 style={styles.h1}>17.8.2026 Kielipajan jatkotyöstöä</h1>
         <p style={styles.sub}>
           Äänestä vaihtoehdoista ja keskustele tuloksista — kaikki näkevät
           saman, reaaliajassa.
