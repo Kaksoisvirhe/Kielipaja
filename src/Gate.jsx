@@ -50,7 +50,7 @@ export default function Gate({ children }) {
           width: "100%",
         }}
       >
-        <h1 style={{ fontSize: 22, margin: "0 0 8px" }}>Työpajan tulokset</h1>
+        <h1 style={{ fontSize: 22, margin: "0 0 8px" }}>12.8.2026 Kielipajan jatkotyöstöä</h1>
         <p
           style={{
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
@@ -59,7 +59,7 @@ export default function Gate({ children }) {
             margin: "0 0 18px",
           }}
         >
-          Sivu on suojattu. Syötä työpajassa annettu koodi.
+          Sivu on suojattu. Syötä pääsykoodi, jonka sait sähköpostissa.
         </p>
         <input
           type="password"
