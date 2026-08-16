@@ -202,7 +202,7 @@ export default function App() {
         <div style={styles.loadingWrap}>
           <div style={styles.spinner} />
           <p style={{ color: "#7a7266", fontFamily: "Georgia, serif" }}>
-            Ladataan työpajaa…
+            Ladataan sivua…
           </p>
         </div>
       </div>
