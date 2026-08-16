@@ -8,6 +8,27 @@ function uid() {
 const EMPTY_POLL = { question: "", options: [], votes: {} };
 
 export default function App() {
+  if (!ROOM) {
+    return (
+      <div style={styles.page}>
+        <div style={{ maxWidth: 480, margin: "80px auto", textAlign: "center" }}>
+          <h1 style={{ fontSize: 24, marginBottom: 12 }}>Kielipaja</h1>
+          <p
+            style={{
+              fontFamily: "'Helvetica Neue', Arial, sans-serif",
+              fontSize: 15,
+              color: "#6b6558",
+              lineHeight: 1.6,
+            }}
+          >
+            Tämä sivu ei näytä mitään ilman huonelinkkiä. Pyydä työpajan
+            järjestäjältä linkki, jonka lopussa on <code>?huone=...</code>.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const [name, setName] = useState("");
   const [nameSaved, setNameSaved] = useState(false);
   const [loading, setLoading] = useState(true);
