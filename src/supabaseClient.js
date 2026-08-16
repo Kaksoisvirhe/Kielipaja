@@ -11,6 +11,9 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Nimi huoneelle - jos haluat useamman erillisen työpajan samalla Supabase-projektilla,
-// vaihda tämä esim. "tyopaja-2026-03" ja anna eri linkki eri ryhmille.
-export const ROOM = "tyopaja-default";
+// Huoneen nimi tulee osoitteen ?huone=... -parametrista, esim.
+// kielipaja.vercel.app/?huone=budjetti-2026
+// Jos parametria ei anneta, käytetään oletushuonetta "tyopaja-default".
+// Jokainen eri huoneen nimi on oma erillinen kysymys + keskustelu.
+const params = new URLSearchParams(window.location.search);
+export const ROOM = params.get("huone") || "tyopaja-default";
