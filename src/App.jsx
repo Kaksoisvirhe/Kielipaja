@@ -44,6 +44,17 @@ export default function App() {
 
   const rowExists = useRef(false);
 
+    const rowExists = useRef(false);
+
+  const isAdmin = (() => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("admin");
+    if (code && code === import.meta.env.VITE_ADMIN_CODE) {
+      sessionStorage.setItem("tyopaja-admin", "true");
+    }
+    return sessionStorage.getItem("tyopaja-admin") === "true";
+  })();
+
   const load = useCallback(async () => {
     const { data, error: err } = await supabase
       .from("workshop_rooms")
@@ -363,14 +374,16 @@ export default function App() {
                     <div style={styles.voters}>{voters.join(", ")}</div>
                   )}
                 </button>
-                <button
-                  onClick={() => removeOption(opt.id)}
-                  style={styles.removeBtn}
-                  title="Poista vaihtoehto"
-                  aria-label="Poista vaihtoehto"
-                >
-                  ×
-                </button>
+                                {isAdmin && (
+                  <button
+                    onClick={() => removeOption(opt.id)}
+                    style={styles.removeBtn}
+                    title="Poista vaihtoehto"
+                    aria-label="Poista vaihtoehto"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
             );
           })}
