@@ -44,7 +44,7 @@ export default function App() {
 
   const rowExists = useRef(false);
 
-    const rowExists = useRef(false);
+
 
   const isAdmin = (() => {
     const params = new URLSearchParams(window.location.search);
